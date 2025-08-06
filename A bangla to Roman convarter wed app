@@ -1,0 +1,18 @@
+# bangla2roman-app
+A bangla to Roman convarter wed app
+// Simple Bangla to Roman Transliteration App import { useState } from "react"; import { Card, CardContent } from "@/components/ui/card"; import { Textarea } from "@/components/ui/textarea";
+
+export default function BanglaToRoman() { const [banglaText, setBanglaText] = useState(""); const [romanText, setRomanText] = useState("");
+
+// Basic transliteration map (can be expanded) const transliterationMap = { "আ": "a", "অ": "o", "ই": "i", "ঈ": "ee", "উ": "u", "ঊ": "oo", "এ": "e", "ঐ": "oi", "ও": "o", "ঔ": "ou", "ক": "k", "খ": "kh", "গ": "g", "ঘ": "gh", "ঙ": "ng", "চ": "ch", "ছ": "chh", "জ": "j", "ঝ": "jh", "ঞ": "n", "ট": "t", "ঠ": "th", "ড": "d", "ঢ": "dh", "ণ": "n", "ত": "t", "থ": "th", "দ": "d", "ধ": "dh", "ন": "n", "প": "p", "ফ": "f", "ব": "b", "ভ": "bh", "ম": "m", "য": "j", "র": "r", "ল": "l", "শ": "sh", "ষ": "sh", "স": "s", "হ": "h", "য়": "y", "ং": "ng", "ঃ": "h", "ঁ": "n", "া": "a", "ি": "i", "ী": "ee", "ু": "u", "ূ": "oo", "ে": "e", "ৈ": "oi", "ো": "o", "ৌ": "ou", "্": "", };
+
+const transliterate = (text) => { return text .split("") .map((char) => transliterationMap[char] || char) .join(""); };
+
+const handleChange = (e) => { const input = e.target.value; setBanglaText(input); setRomanText(transliterate(input)); };
+
+return ( <div className="p-4 grid gap-4"> <Card> <CardContent className="p-4"> <h2 className="text-xl font-bold mb-2">বাংলা থেকে রোমান (Bangla to Roman)</h2> <Textarea
+value={banglaText}
+onChange={handleChange}
+placeholder="এখানে বাংলায় লিখো..."
+className="mb-4"
+/> <div> <h3 className="text-md font-semibold mb-1">Roman English:</h3> <p className="bg-gray-100 p-2 rounded min-h-[80px] whitespace-pre-wrap"> {romanText || "এখানে রোমান রূপ দেখা যাবে..."} </p> </div> </CardContent> </Card> </div> ); }
