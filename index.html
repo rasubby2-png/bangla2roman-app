@@ -1,35 +1,28 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Bangla to Roman Converter</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f9f9f9; }
+    textarea, input { width: 100%; padding: 10px; margin-top: 10px; font-size: 16px; }
+    .output { margin-top: 20px; font-size: 18px; background: #fff; padding: 10px; border: 1px solid #ccc; }
+  </style>
 </head>
 <body>
-  <h1>বাংলা থেকে রোমান কনভার্টার</h1>
-  <textarea id="bangla" placeholder="বাংলা লেখো..."></textarea>
-  <p>রোমান: <span id="roman"></span></p>
 
-  <script>
-    const map = {
-      'তুমি': 'tumi',
-      'কি': 'ki',
-      'কেমন': 'kemon',
-      'আছো': 'acho',
-      'ভালো': 'valo',
-      'না': 'na',
-      'হ্যাঁ': 'ha',
-      'আমার': 'amar',
-      'নাম': 'nam',
-      'কি?': 'ki?'
-    };
+<h2>বাংলা থেকে রোমান রূপান্তর</h2>
+<textarea id="banglaInput" rows="4" placeholder="এখানে বাংলা লিখুন..."></textarea>
+<div class="output" id="romanOutput">এখানে Roman Bangla দেখাবে</div>
 
-    document.getElementById('bangla').addEventListener('input', function () {
-      const input = this.value.trim();
-      const words = input.split(' ');
-      const romanWords = words.map(word => map[word] || word);
-      document.getElementById('roman').innerText = romanWords.join(' ');
-    });
-  </script>
-</body>
-</html>
+<script>
+  const banglaToRoman = {
+    'অ': 'o', 'আ': 'a', 'ই': 'i', 'ঈ': 'ee', 'উ': 'u', 'ঊ': 'oo',
+    'এ': 'e', 'ঐ': 'oi', 'ও': 'o', 'ঔ': 'ou',
+    'ক': 'k', 'খ': 'kh', 'গ': 'g', 'ঘ': 'gh', 'ঙ': 'ng',
+    'চ': 'ch', 'ছ': 'chh', 'জ': 'j', 'ঝ': 'jh', 'ঞ': 'n',
+    'ট': 't', 'ঠ': 'th', 'ড': 'd', 'ঢ': 'dh', 'ণ': 'n',
+    'ত': 't', 'থ': 'th', 'দ': 'd', 'ধ': 'dh', 'ন': 'n',
+    'প': 'p', 'ফ': 'ph', 'ব': 'b', 'ভ': 'bh', 'ম': 'm',
+    'য': 'z', 'র': 'r', 'ল': 'l', 'শ': 'sh', 'ষ': 'sh', 'স': 's', 'হ': 'h',
+    'া': 'a', 'ি': 'i', 'ী': 'ee', 'ু': 'u', 'ূ': 'oo', 'ে': 'e', 'ৈ': 'oi', 'ো': 'o',
